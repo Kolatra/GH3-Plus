@@ -101,6 +101,9 @@ int __stdcall textureManipulator(uint32_t key)
 void ApplyHack()
 {
 
-	g_patcher.WriteJmp(textureKeyDetour, (void *)textureHelperNaked);
+	if (!g_patcher.WriteJmp(textureKeyDetour, (void *)textureHelperNaked)) 
+	{
+		g_patcher.RemoveAllChanges();
+	}
 
 }
